@@ -53,13 +53,33 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
+	function onDeviceReady() {
+				// Blanker on change				
+				document.addEventListener("online", doWhenOnline, false);
+				document.addEventListener("offline", doWhenOffline, false);
+				var networkState = navigator.connection.type;
+				
+				if(networkState == Connection.NONE) {
+					doWhenOffline();
+				}
+				else{
+					doWhenOnline();
+				}                				
+			}	
 			
-		 window.addEventListener("batterystatus", onBatteryStatus, false);
+		window.addEventListener("batterystatus", onBatteryStatus, false);
 
     function onBatteryStatus(info) {
-        // Handle the battery status event
-        alert("Battery Status " + info.level + "%\nRecharge Soon!");
+        // Handle the online event
+        console.log("Level: " + info.level);
     }
+	function doWhenOnline(){
+				document.getElementById('offline-screen').style.display = 'none';
+			}
+			
+			function doWhenOffline(){				
+				document.getElementById('offline-screen').style.display = 'block';
+			}
 		
 		
 		
