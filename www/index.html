@@ -40,7 +40,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <title>Asif App</title>
-</head>
+
 
 <body>
     <div class="app">
@@ -53,28 +53,31 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
-    
-    
-		function onLoad() {
-			document.addEventListener("deviceready", onDeviceReady, false);
-    }
-
-							// Cordova is loaded and it is now safe to make calls Cordova methods
-							//
-    
-		function onDeviceReady() {
+			
+			window.addEventListener("deviceready",init,false);
+		function init()
+		{
+			window.addEventListener("batterycritical",bCritical,false);
+			window.addEventListener("batterylow",bLow,false);
+		}
+		function bCritical(info)
+		{
+			alert("Your Battery @ critical Status"+info.level);
+		}
+		function bLow(info)
+		{
+			alert("Battery @ low"+info.level);
+		}
+		function checkbattery()
+		{
 			window.addEventListener("batterystatus", onBatteryStatus, false);
-    }
-
-							// Handle the batterystatus event
-							//
-		
-    function onBatteryStatus(info) {
-			console.log("Level: " + info.level + " isPlugged: " + info.isPlugged); 
-    }
-    
-    
-    </script>
-</body>
-
+		}
+		function onBatteryStatus(info) {
+			
+			alert("Level: " + info.level + " isPlugged: " + info.isPlugged);
+			
+	</script>
+	<body>
+		<button onclick="checkbattery()">Battery Status</button>
+	</body>
 </html>
