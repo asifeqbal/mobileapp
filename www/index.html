@@ -68,12 +68,8 @@
 			}	
 			
 		window.addEventListener("batterystatus", onBatteryStatus, false);
-
-    function onBatteryStatus(info) {
-        // Handle the online event
-        console.log("Level: " + info.level);
-    }
-	function doWhenOnline(){
+		
+       function doWhenOnline(){
 				document.getElementById('offline-screen').style.display = 'none';
 			}
 			
@@ -81,6 +77,11 @@
 				document.getElementById('offline-screen').style.display = 'block';
 			}
 		
+    function onBatteryStatus(info) {
+        // Handle the online event
+        console.log("Level: " + info.level);
+    }
+	
 		
 		
 			
