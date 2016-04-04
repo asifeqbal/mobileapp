@@ -40,7 +40,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <title>Asif App</title>
-
+</head>
 
 <body>
     <div class="app">
@@ -54,30 +54,43 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
 			
-			window.addEventListener("deviceready",init,false);
-		function init()
-		{
-			window.addEventListener("batterycritical",bCritical,false);
-			window.addEventListener("batterylow",bLow,false);
-		}
-		function bCritical(info)
-		{
-			alert("Your Battery @ critical Status"+info.level);
-		}
-		function bLow(info)
-		{
-			alert("Battery @ low"+info.level);
-		}
-		function checkbattery()
-		{
-			window.addEventListener("batterystatus", onBatteryStatus, false);
-		}
-		function onBatteryStatus(info) {
+		 var statusdiv;
+
+        var drawStatus = function(info){
+            var s = "<p><b>Battery Status</b><br/>";
+            s += "Level is "+info.level + "<br/>";
+            s += "Plugged in is "+info.isPlugged;
+            s += "</p>";
+            statusdiv.innerHTML = s;
+        };
+                
+        var battCrit = function(info) {
+            navigator.notification.alert("Your battery is SUPER low!");
+            drawStatus(info);
+        };
+
+        var battLow = function(info) {
+            navigator.notification.alert("Your battery is low!");
+            drawStatus(info);
+        };
+
+        var battStat = function(info) {
+            drawStatus(info);
+        };
+      
+        var onDeviceReady = function() {
+            //listen for battery events
+            window.addEventListener("batterycritical", battCrit, false);
+            window.addEventListener("batterylow", battLow, false);
+            window.addEventListener("batterystatus", battStat, false);
+        };
+
+        function init() {
+            document.addEventListener("deviceready", onDeviceReady, true);
+            statusdiv = document.getElementById("status");
+        }   
 			
-			alert("Level: " + info.level + " isPlugged: " + info.isPlugged);
-			
-	</script>
-	<body>
-		<button onclick="checkbattery()">Battery Status</button>
-	</body>
+    </script>
+</body>
+
 </html>
