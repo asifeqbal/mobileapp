@@ -35,11 +35,6 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
     },
-    onBatteryStatus:function(info) {
-		alert("Level: " + info.level + " isPlugged: " + info.isPlugged);
-    },
-    
-    
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
