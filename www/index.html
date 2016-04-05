@@ -57,23 +57,16 @@
 				// Blanker on change				
 				document.addEventListener("online", doWhenOnline, false);
 				document.addEventListener("offline", doWhenOffline, false);
-				window.addEventListener("batterystatus", onBatteryStatus, false);
-				var networkState = navigator.connection.type;
 				
-				if(networkState == Connection.NONE) {
-					doWhenOffline();
-				}
-				else{
-					doWhenOnline();
-				}                				
-			}	
-			function onBatteryStatus(info) {
-						// Handle the online event
-					console.log("Level: " + info.level + " isPlugged: " + info.isPlugged);
-					 
-
-		 }
+				window.addEventListener("batterylow", onBatteryLow, false);
+				
 		
+ 
+		function onBatteryLow(info) 
+			{
+				// the battery low event
+				alert("Battery Level Low " + info.level + "%");
+			}
 		
       	
     </script>
