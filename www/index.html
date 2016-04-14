@@ -10,21 +10,49 @@
 <script type="text/javascript" src="device.js"></script>
 
 <script>
-function getDeviceinfo()
+function onLoad()
 {
-	var info = "";
-	info=="The Device Model : " + device.model;
-	info=="Device Name : " + device.model;
-	info=="Cordova Version : " + device.model;
-	info=="Platform : " + device.Platform;
-	info=="UUID : " + device.UUID;
-	info=="Version : " + device.Version;
 alert("onload");
-document.getElementById("lblDeviceInfo")innerHTML = "This is Custom Text";
+document.addEventListener("deviceready",odr,false);
 }
-
+function odr()
+{
+alert("device ready");
+var cordovaVersion=device.cordova;
+//alert('new'+cordovaVersion);
+var phoneModel=device.model;
+var phonePlatform=device.platform;
+var phoneUUID=device.uuid;
+var osVersion=device.version;
+$("#cordovaVersion").html(cordovaVersion);
+$("#phoneModel").html(phoneModel);
+$("#phonePlatform").html(phonePlatform);
+$("#phoneUUID").html(phoneUUID);
+$("#osVersion").html(osVersion);
+}
 </script>
-
+</head>
+<body onload="onLoad()">
+<div class="bar bar-header bar-light">
+<h1 class="title">Device Information</h1>
+</div>
+<br/><br/>
+<ul class="list list-inset">
+<div class="item">
+Cordova Version <p id="cordovaVersion" class="item-note"></p>
+</div>
+<div class="item">
+Phone Model <p id="phoneModel" class="item-note"></p>
+</div>
+<div class="item">
+Platform <p id="phonePlatform" class="item-note"></p>
+</div>
+<div class="item">
+UUID <p id="phoneUUID" class="item-note"></p>
+</div>
+<div class="item">
+OS Version <p id="osVersion" class="item-note"></p>
+</div>
 </div>
 </body>
 </html>
