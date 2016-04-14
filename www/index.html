@@ -10,9 +10,16 @@
 <script type="text/javascript" src="device.js"></script>
 
 <script>
-function onLoad()
+function getDeviceinfo()
 {
-alert("onload");
+	var info = "";
+	info=="The Device Model : " + device.model;
+	info=="Device Name : " + device.model;
+	info=="Cordova Version : " + device.model;
+	info=="Platform : " + device.Platform;
+	info=="UUID : " + device.UUID;
+	info=="Version : " + device.Version;
+ 
 document.addEventListener("deviceready",odr,false);
 }
 function odr()
@@ -24,11 +31,11 @@ var phoneModel=device.model;
 var phonePlatform=device.platform;
 var phoneUUID=device.uuid;
 var osVersion=device.version;
-$("#cordovaVersion").html(cordovaVersion);
+$("#cordovaVersion").html(cordovaVersion) + "<br/>";
 $("#phoneModel").html(phoneModel);
-$("#phonePlatform").html(phonePlatform);
-$("#phoneUUID").html(phoneUUID);
-$("#osVersion").html(osVersion);
+$("#phonePlatform").html(phonePlatform) + "<br/>";
+$("#phoneUUID").html(phoneUUID)	+ "<br/>";
+$("#osVersion").html(osVersion) + "<br/>";
 }
 </script>
 </head>
