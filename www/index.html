@@ -19,24 +19,10 @@ function getDeviceinfo()
 	info=="Platform : " + device.Platform;
 	info=="UUID : " + device.UUID;
 	info=="Version : " + device.Version;
- 
-document.addEventListener("deviceready",odr,false);
+alert("onload");
+document.getElementById("lblDeviceInfo")innerHTML = "This is Custom Text";
 }
-function odr()
-{
-alert("device ready");
-var cordovaVersion=device.cordova;
-//alert('new'+cordovaVersion);
-var phoneModel=device.model;
-var phonePlatform=device.platform;
-var phoneUUID=device.uuid;
-var osVersion=device.version;
-$("#cordovaVersion").html(cordovaVersion) + "<br/>";
-$("#phoneModel").html(phoneModel);
-$("#phonePlatform").html(phonePlatform) + "<br/>";
-$("#phoneUUID").html(phoneUUID)	+ "<br/>";
-$("#osVersion").html(osVersion) + "<br/>";
-}
+
 </script>
 </head>
 <body onload="onLoad()">
