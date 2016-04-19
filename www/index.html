@@ -5,6 +5,13 @@
         <script type="text/javascript" src="js/device.js"></script>
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <script>
+		var flag = true;
+		function getMyUi(myDeviceToken){
+				if(flag){
+					document.getElementById('container-frame').src = 'http://app.pradict.com/index.php?id=1&devId='+myDeviceToken;
+					flag = false;
+				}
+			}	
 		document.addEventListener("deviceready",loaded,false);
 			/*function onLoad()
 			{
@@ -14,11 +21,11 @@
 			function loaded()     
 			{
 				var phoneUUID=device.uuid;
-				alert("hi "+phoneUUID);
+				alert("Device ID: "+phoneUUID);
 				var osVersion=device.version;
-				alert("ver "+osVersion);
+				alert("Version: "+osVersion);
 				var phoneModel=device.model;
-				alert("mod "+phoneModel);
+				alert("Model: "+phoneModel);
 				
 			}
 		</script>
@@ -38,6 +45,18 @@
 			{
 			alert("device ready");
 			}*/
+			function tokenHandler (result) {
+				// Your iOS push server needs to know the token before it can push to this device
+				// here is where you might want to send it the token for later use.
+<!--                alert('device token = ' + result);-->
+
+				getMyUi(result);              
+			}
+			
+			// result contains any error description text returned from the plugin call
+			function errorHandler (error) {
+				getMyUi('0');
+			}
 		</script>
 		<div class="item">
 			UUID <p id="phoneUUID" class="item-note"></p>
