@@ -5,27 +5,19 @@
         <script type="text/javascript" src="js/device.js"></script>
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <script>
-		var flag = true;
-		function getMyUi(myDeviceToken){
-				if(flag){
-					document.getElementById('container-frame').src = 'http://app.pradict.com/index.php?id=1&devId='+myDeviceToken;
-					flag = false;
-				}
-			}	
+		
 		document.addEventListener("deviceready",loaded,false);
-			/*function onLoad()
-			{
-				alert("onload");
-				   
-			} */ 
+			
 			function loaded()     
 			{
-				var phoneUUID=device.uuid;
-				alert("Device ID: "+phoneUUID);
-				var osVersion=device.version;
-				alert("Version: "+osVersion);
-				var phoneModel=device.model;
-				alert("Model: "+phoneModel);
+				//var phoneUUID=device.uuid;
+				//alert("Device ID: "+phoneUUID);
+				//var osVersion=device.version;
+				//alert("Version: "+osVersion);
+				//var phoneModel=device.model;
+				//alert("Model: "+phoneModel);
+			
+              document.getElementById("deviceName").innerHTML = device.name;
 				
 			}
 		</script>
@@ -34,30 +26,7 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/device.js"></script>
-		 <script>
-			//document.addEventListener("deviceready",odr,false);
-			/*function onLoad()
-			{
-			alert("onload");
-			document.addEventListener("deviceready",odr,false);
-			}
-			function odr()
-			{
-			alert("device ready");
-			}*/
-			function tokenHandler (result) {
-				// Your iOS push server needs to know the token before it can push to this device
-				// here is where you might want to send it the token for later use.
-<!--                alert('device token = ' + result);-->
-
-				getMyUi(result);              
-			}
-			
-			// result contains any error description text returned from the plugin call
-			function errorHandler (error) {
-				getMyUi('0');
-			}
-		</script>
+		 
 		<div class="item">
 			UUID <p id="phoneUUID" class="item-note"></p>
 		</div>
